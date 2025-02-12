@@ -14,7 +14,8 @@
 #
 ################################################################################
 
-FROM ghcr.io/aixcc-finals/base-clang
+ARG IMG_TAG=latest
+FROM ghcr.io/aixcc-finals/base-clang:${IMG_TAG}
 
 COPY install_deps.sh /
 RUN /install_deps.sh && rm /install_deps.sh

@@ -16,7 +16,8 @@
 
 # Docker image with clang installed.
 
-FROM ghcr.io/aixcc-finals/base-image
+ARG IMG_TAG=latest
+FROM ghcr.io/aixcc-finals/base-image:${IMG_TAG}
 
 ARG arch=x86_64
 

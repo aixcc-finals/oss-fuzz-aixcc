@@ -14,7 +14,8 @@
 #
 ################################################################################
 
-FROM ghcr.io/aixcc-finals/base-builder
+ARG IMG_TAG=latest
+FROM ghcr.io/aixcc-finals/base-builder:${IMG_TAG}
 
 RUN install_swift.sh
 
