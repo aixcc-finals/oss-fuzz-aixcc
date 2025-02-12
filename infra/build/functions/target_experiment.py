@@ -124,7 +124,7 @@ def run_experiment(project_name,
 
   run_step = {
       'name':
-          'gcr.io/oss-fuzz-base/base-runner',
+          'ghcr.io/aixcc-finals/base-runner',
       'env':
           env,
       'args': [

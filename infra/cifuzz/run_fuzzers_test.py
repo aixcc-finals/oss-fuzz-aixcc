@@ -351,7 +351,7 @@ class CoverageReportIntegrationTest(unittest.TestCase):
                       'cp $(which llvm-profdata) /shared && '
                       'cp $(which llvm-cov) /shared')
       assert helper.docker_run([
-          '-v', f'{shared}:/shared', 'gcr.io/oss-fuzz-base/base-runner', 'bash',
+          '-v', f'{shared}:/shared', 'ghcr.io/aixcc-finals/base-runner', 'bash',
           '-c', copy_command
       ])
 
@@ -376,7 +376,7 @@ class CoverageReportIntegrationTest(unittest.TestCase):
 
       assert helper.docker_run([
           '-v', f'{os.path.join(temp_dir, "build-out")}:/out',
-          'gcr.io/oss-fuzz-base/base-builder', 'bash', '-c', chmod_command
+          'ghcr.io/aixcc-finals/base-builder', 'bash', '-c', chmod_command
       ])
 
       # Generate report.

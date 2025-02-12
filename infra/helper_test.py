@@ -71,7 +71,7 @@ class BuildImageImplTest(unittest.TestCase):
     build_dir = os.path.join(helper.OSS_FUZZ_DIR,
                              'infra/base-images/base-image')
     mock_docker_build.assert_called_with([
-        '-t', 'gcr.io/oss-fuzz-base/base-image', '--file',
+        '-t', 'ghcr.io/aixcc-finals/base-image', '--file',
         os.path.join(build_dir, 'Dockerfile'), build_dir
     ])
 

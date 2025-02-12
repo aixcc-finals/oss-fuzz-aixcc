@@ -14,7 +14,7 @@
 #
 # Build and run the proof of error in pytorch-lightning.
 
-FROM gcr.io/oss-fuzz-base/base-builder-python
+FROM ghcr.io/aixcc-finals/base-builder-python
 
 RUN apt update && \
   apt install -y vim && \

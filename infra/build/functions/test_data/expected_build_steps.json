@@ -147,7 +147,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer address --engine afl --architecture x86_64 test-project\npython infra/helper.py check_build --sanitizer address --engine afl --architecture x86_64 test-project\n********************************************************************************\" && false)"
@@ -155,7 +155,7 @@
     "id": "build-check-afl-address-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=afl",
@@ -179,21 +179,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/afl-address-x86_64/test-project-address-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.address",
       "test_url"
@@ -288,7 +288,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer address --engine centipede --architecture x86_64 test-project\npython infra/helper.py check_build --sanitizer address --engine centipede --architecture x86_64 test-project\n********************************************************************************\" && false)"
@@ -296,7 +296,7 @@
     "id": "build-check-centipede-address-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=centipede",
@@ -320,21 +320,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/centipede-address-x86_64/test-project-address-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.address",
       "test_url"
@@ -429,7 +429,7 @@
       "-e",
       "SANITIZER=none",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer none --engine centipede --architecture x86_64 test-project\npython infra/helper.py check_build --sanitizer none --engine centipede --architecture x86_64 test-project\n********************************************************************************\" && false)"
@@ -437,7 +437,7 @@
     "id": "build-check-centipede-none-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=centipede",
@@ -461,21 +461,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/centipede-none-x86_64/test-project-none-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.none",
       "test_url"
@@ -570,7 +570,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer address --engine honggfuzz --architecture x86_64 test-project\npython infra/helper.py check_build --sanitizer address --engine honggfuzz --architecture x86_64 test-project\n********************************************************************************\" && false)"
@@ -578,7 +578,7 @@
     "id": "build-check-honggfuzz-address-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=honggfuzz",
@@ -602,21 +602,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/honggfuzz-address-x86_64/test-project-address-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.address",
       "test_url"
@@ -711,7 +711,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer address --engine libfuzzer --architecture x86_64 test-project\npython infra/helper.py check_build --sanitizer address --engine libfuzzer --architecture x86_64 test-project\n********************************************************************************\" && false)"
@@ -719,7 +719,7 @@
     "id": "build-check-libfuzzer-address-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=libfuzzer",
@@ -743,21 +743,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/libfuzzer-address-x86_64/test-project-address-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.address",
       "test_url"
@@ -852,7 +852,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer address --engine libfuzzer --architecture i386 test-project\npython infra/helper.py check_build --sanitizer address --engine libfuzzer --architecture i386 test-project\n********************************************************************************\" && false)"
@@ -860,7 +860,7 @@
     "id": "build-check-libfuzzer-address-i386"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=i386",
       "FUZZING_ENGINE=libfuzzer",
@@ -884,21 +884,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/libfuzzer-address-i386/test-project-address-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.address",
       "test_url"
@@ -993,7 +993,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer address --engine libfuzzer --architecture aarch64 test-project\npython infra/helper.py check_build --sanitizer address --engine libfuzzer --architecture aarch64 test-project\n********************************************************************************\" && false)"
@@ -1001,7 +1001,7 @@
     "id": "build-check-libfuzzer-address-aarch64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=aarch64",
       "FUZZING_ENGINE=libfuzzer",
@@ -1025,21 +1025,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/libfuzzer-address-aarch64/test-project-address-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.address",
       "test_url"
@@ -1134,7 +1134,7 @@
       "-e",
       "SANITIZER=memory",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer memory --engine libfuzzer --architecture x86_64 test-project\npython infra/helper.py check_build --sanitizer memory --engine libfuzzer --architecture x86_64 test-project\n********************************************************************************\" && false)"
@@ -1142,7 +1142,7 @@
     "id": "build-check-libfuzzer-memory-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=libfuzzer",
@@ -1166,21 +1166,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/libfuzzer-memory-x86_64/test-project-memory-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.memory",
       "test_url"
@@ -1275,7 +1275,7 @@
       "-e",
       "SANITIZER=undefined",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer undefined --engine libfuzzer --architecture x86_64 test-project\npython infra/helper.py check_build --sanitizer undefined --engine libfuzzer --architecture x86_64 test-project\n********************************************************************************\" && false)"
@@ -1283,7 +1283,7 @@
     "id": "build-check-libfuzzer-undefined-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=libfuzzer",
@@ -1307,21 +1307,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/libfuzzer-undefined-x86_64/test-project-undefined-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.undefined",
       "test_url"

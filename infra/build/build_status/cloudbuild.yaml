@@ -3,11 +3,11 @@ steps:
   args:
   - build
   - '-t'
-  - gcr.io/oss-fuzz-base/build-status
+  - ghcr.io/aixcc-finals/build-status
   - '-f'
   - infra/build/build_status/Dockerfile
   - .
-- name: 'gcr.io/oss-fuzz-base/build-status'
+- name: 'ghcr.io/aixcc-finals/build-status'
   args: []
   timeout: 14400s
 options:

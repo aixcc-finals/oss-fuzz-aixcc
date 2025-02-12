@@ -267,7 +267,7 @@ def download_coverage_data_steps(project_name, latest, bucket_name, out_dir):
     return None
 
   steps.append({
-      'name': 'gcr.io/oss-fuzz-base/base-runner',
+      'name': 'ghcr.io/aixcc-finals/base-runner',
       'args': ['bash', '-c', (f'mkdir -p {out_dir}/textcov_reports')]
   })
 
@@ -279,7 +279,7 @@ def download_coverage_data_steps(project_name, latest, bucket_name, out_dir):
       'allowFailure': True
   })
   steps.append({
-      'name': 'gcr.io/oss-fuzz-base/base-runner',
+      'name': 'ghcr.io/aixcc-finals/base-runner',
       'args': ['bash', '-c', f'ls -lrt {out_dir}/textcov_reports'],
       'allowFailure': True
   })
@@ -322,16 +322,16 @@ def get_pull_test_images_steps(test_image_suffix):
   """Returns steps to pull testing versions of base-images and tag them so that
   they are used in builds."""
   images = [
-      'gcr.io/oss-fuzz-base/base-builder',
-      'gcr.io/oss-fuzz-base/base-builder-swift',
-      'gcr.io/oss-fuzz-base/base-builder-javascript',
-      'gcr.io/oss-fuzz-base/base-builder-jvm',
-      'gcr.io/oss-fuzz-base/base-builder-go',
-      'gcr.io/oss-fuzz-base/base-builder-python',
-      'gcr.io/oss-fuzz-base/base-builder-ruby',
-      'gcr.io/oss-fuzz-base/base-builder-rust',
-      'gcr.io/oss-fuzz-base/base-builder-ruby',
-      'gcr.io/oss-fuzz-base/base-runner',
+      'ghcr.io/aixcc-finals/base-builder',
+      'ghcr.io/aixcc-finals/base-builder-swift',
+      'ghcr.io/aixcc-finals/base-builder-javascript',
+      'ghcr.io/aixcc-finals/base-builder-jvm',
+      'ghcr.io/aixcc-finals/base-builder-go',
+      'ghcr.io/aixcc-finals/base-builder-python',
+      'ghcr.io/aixcc-finals/base-builder-ruby',
+      'ghcr.io/aixcc-finals/base-builder-rust',
+      'ghcr.io/aixcc-finals/base-builder-ruby',
+      'ghcr.io/aixcc-finals/base-runner',
   ]
   steps = []
   for image in images:
@@ -346,11 +346,11 @@ def get_pull_test_images_steps(test_image_suffix):
     })
 
     # This step is hacky but gives us great flexibility. OSS-Fuzz has hardcoded
-    # references to gcr.io/oss-fuzz-base/base-builder (in dockerfiles, for
-    # example) and gcr.io/oss-fuzz-base-runner (in this build code). But the
+    # references to ghcr.io/aixcc-finals/base-builder (in dockerfiles, for
+    # example) and ghcr.io/aixcc-finals-runner (in this build code). But the
     # testing versions of those images are called e.g.
-    # gcr.io/oss-fuzz-base/base-builder-testing and
-    # gcr.io/oss-fuzz-base/base-runner-testing. How can we get the build to use
+    # ghcr.io/aixcc-finals/base-builder-testing and
+    # ghcr.io/aixcc-finals/base-runner-testing. How can we get the build to use
     # the testing images instead of the real ones? By doing this step: tagging
     # the test image with the non-test version, so that the test version is used
     # instead of pulling the real one.

@@ -14,7 +14,7 @@
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/base-runner
+FROM ghcr.io/aixcc-finals/base-runner
 
 RUN mkdir -p /opt/oss-fuzz/infra/build_status
 COPY infra/build/functions/* /opt/oss-fuzz/infra/build_status/

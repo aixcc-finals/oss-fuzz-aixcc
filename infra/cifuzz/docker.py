@@ -24,7 +24,7 @@ import constants
 import utils
 import environment
 
-BASE_BUILDER_TAG = 'gcr.io/oss-fuzz-base/base-builder'
+BASE_BUILDER_TAG = 'ghcr.io/aixcc-finals/base-builder'
 PROJECT_TAG_PREFIX = 'gcr.io/oss-fuzz/'
 
 # Default fuzz configuration.

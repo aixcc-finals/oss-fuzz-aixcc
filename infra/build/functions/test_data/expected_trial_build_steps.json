@@ -14,7 +14,7 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "pull",
-      "gcr.io/oss-fuzz-base/base-builder-testing-mybranch"
+      "ghcr.io/aixcc-finals/base-builder-testing-mybranch"
     ],
     "waitFor": "-"
   },
@@ -22,15 +22,15 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "tag",
-      "gcr.io/oss-fuzz-base/base-builder-testing-mybranch",
-      "gcr.io/oss-fuzz-base/base-builder"
+      "ghcr.io/aixcc-finals/base-builder-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-builder"
     ]
   },
   {
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "pull",
-      "gcr.io/oss-fuzz-base/base-builder-swift-testing-mybranch"
+      "ghcr.io/aixcc-finals/base-builder-swift-testing-mybranch"
     ],
     "waitFor": "-"
   },
@@ -38,15 +38,15 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "tag",
-      "gcr.io/oss-fuzz-base/base-builder-swift-testing-mybranch",
-      "gcr.io/oss-fuzz-base/base-builder-swift"
+      "ghcr.io/aixcc-finals/base-builder-swift-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-builder-swift"
     ]
   },
   {
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "pull",
-      "gcr.io/oss-fuzz-base/base-builder-javascript-testing-mybranch"
+      "ghcr.io/aixcc-finals/base-builder-javascript-testing-mybranch"
     ],
     "waitFor": "-"
   },
@@ -54,15 +54,15 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "tag",
-      "gcr.io/oss-fuzz-base/base-builder-javascript-testing-mybranch",
-      "gcr.io/oss-fuzz-base/base-builder-javascript"
+      "ghcr.io/aixcc-finals/base-builder-javascript-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-builder-javascript"
     ]
   },
   {
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "pull",
-      "gcr.io/oss-fuzz-base/base-builder-jvm-testing-mybranch"
+      "ghcr.io/aixcc-finals/base-builder-jvm-testing-mybranch"
     ],
     "waitFor": "-"
   },
@@ -70,15 +70,15 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "tag",
-      "gcr.io/oss-fuzz-base/base-builder-jvm-testing-mybranch",
-      "gcr.io/oss-fuzz-base/base-builder-jvm"
+      "ghcr.io/aixcc-finals/base-builder-jvm-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-builder-jvm"
     ]
   },
   {
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "pull",
-      "gcr.io/oss-fuzz-base/base-builder-go-testing-mybranch"
+      "ghcr.io/aixcc-finals/base-builder-go-testing-mybranch"
     ],
     "waitFor": "-"
   },
@@ -86,15 +86,15 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "tag",
-      "gcr.io/oss-fuzz-base/base-builder-go-testing-mybranch",
-      "gcr.io/oss-fuzz-base/base-builder-go"
+      "ghcr.io/aixcc-finals/base-builder-go-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-builder-go"
     ]
   },
   {
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "pull",
-      "gcr.io/oss-fuzz-base/base-builder-python-testing-mybranch"
+      "ghcr.io/aixcc-finals/base-builder-python-testing-mybranch"
     ],
     "waitFor": "-"
   },
@@ -102,22 +102,22 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "tag",
-      "gcr.io/oss-fuzz-base/base-builder-python-testing-mybranch",
-      "gcr.io/oss-fuzz-base/base-builder-python"
+      "ghcr.io/aixcc-finals/base-builder-python-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-builder-python"
     ]
   },
-  {"args": ["pull", "gcr.io/oss-fuzz-base/base-builder-ruby-testing-mybranch"],
+  {"args": ["pull", "ghcr.io/aixcc-finals/base-builder-ruby-testing-mybranch"],
    "name": "gcr.io/cloud-builders/docker",
    "waitFor": "-"},
   {"args": ["tag",
-            "gcr.io/oss-fuzz-base/base-builder-ruby-testing-mybranch",
-            "gcr.io/oss-fuzz-base/base-builder-ruby"],
+            "ghcr.io/aixcc-finals/base-builder-ruby-testing-mybranch",
+            "ghcr.io/aixcc-finals/base-builder-ruby"],
    "name": "gcr.io/cloud-builders/docker"},
   {
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "pull",
-      "gcr.io/oss-fuzz-base/base-builder-rust-testing-mybranch"
+      "ghcr.io/aixcc-finals/base-builder-rust-testing-mybranch"
     ],
     "waitFor": "-"
   },
@@ -125,15 +125,15 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "tag",
-      "gcr.io/oss-fuzz-base/base-builder-rust-testing-mybranch",
-      "gcr.io/oss-fuzz-base/base-builder-rust"
+      "ghcr.io/aixcc-finals/base-builder-rust-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-builder-rust"
     ]
   },
   {
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "pull",
-      "gcr.io/oss-fuzz-base/base-builder-ruby-testing-mybranch"
+      "ghcr.io/aixcc-finals/base-builder-ruby-testing-mybranch"
     ],
     "waitFor": "-"
   },
@@ -141,15 +141,15 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "tag",
-      "gcr.io/oss-fuzz-base/base-builder-ruby-testing-mybranch",
-      "gcr.io/oss-fuzz-base/base-builder-ruby"
+      "ghcr.io/aixcc-finals/base-builder-ruby-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-builder-ruby"
     ]
   },
   {
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "pull",
-      "gcr.io/oss-fuzz-base/base-runner-testing-mybranch"
+      "ghcr.io/aixcc-finals/base-runner-testing-mybranch"
     ],
     "waitFor": "-"
   },
@@ -157,8 +157,8 @@
     "name": "gcr.io/cloud-builders/docker",
     "args": [
       "tag",
-      "gcr.io/oss-fuzz-base/base-runner-testing-mybranch",
-      "gcr.io/oss-fuzz-base/base-runner"
+      "ghcr.io/aixcc-finals/base-runner-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-runner"
     ]
   },
   {
@@ -256,7 +256,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-runner-testing-mybranch",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image skcms\npython infra/helper.py build_fuzzers --sanitizer address --engine afl --architecture x86_64 skcms\npython infra/helper.py check_build --sanitizer address --engine afl --architecture x86_64 skcms\n********************************************************************************\" && false)"
@@ -264,7 +264,7 @@
     "id": "build-check-afl-address-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner-testing-mybranch",
+    "name": "ghcr.io/aixcc-finals/base-runner-testing-mybranch",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=afl",
@@ -348,7 +348,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-runner-testing-mybranch",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image skcms\npython infra/helper.py build_fuzzers --sanitizer address --engine libfuzzer --architecture x86_64 skcms\npython infra/helper.py check_build --sanitizer address --engine libfuzzer --architecture x86_64 skcms\n********************************************************************************\" && false)"
@@ -356,7 +356,7 @@
     "id": "build-check-libfuzzer-address-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner-testing-mybranch",
+    "name": "ghcr.io/aixcc-finals/base-runner-testing-mybranch",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=libfuzzer",
@@ -440,7 +440,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-runner-testing-mybranch",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image skcms\npython infra/helper.py build_fuzzers --sanitizer address --engine libfuzzer --architecture i386 skcms\npython infra/helper.py check_build --sanitizer address --engine libfuzzer --architecture i386 skcms\n********************************************************************************\" && false)"
@@ -448,7 +448,7 @@
     "id": "build-check-libfuzzer-address-i386"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner-testing-mybranch",
+    "name": "ghcr.io/aixcc-finals/base-runner-testing-mybranch",
     "env": [
       "ARCHITECTURE=i386",
       "FUZZING_ENGINE=libfuzzer",
@@ -532,7 +532,7 @@
       "-e",
       "SANITIZER=undefined",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner-testing-mybranch",
+      "ghcr.io/aixcc-finals/base-runner-testing-mybranch",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image skcms\npython infra/helper.py build_fuzzers --sanitizer undefined --engine libfuzzer --architecture x86_64 skcms\npython infra/helper.py check_build --sanitizer undefined --engine libfuzzer --architecture x86_64 skcms\n********************************************************************************\" && false)"
@@ -540,7 +540,7 @@
     "id": "build-check-libfuzzer-undefined-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner-testing-mybranch",
+    "name": "ghcr.io/aixcc-finals/base-runner-testing-mybranch",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=libfuzzer",

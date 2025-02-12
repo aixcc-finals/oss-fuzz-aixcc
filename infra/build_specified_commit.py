@@ -110,7 +110,7 @@ def _replace_base_builder_digest(dockerfile_path, digest):
   new_lines = []
   for line in lines:
     if line.strip().startswith('FROM'):
-      line = 'FROM gcr.io/oss-fuzz-base/base-builder@' + digest + '\n'
+      line = 'FROM ghcr.io/aixcc-finals/base-builder@' + digest + '\n'
 
     new_lines.append(line)
 
@@ -346,7 +346,7 @@ def load_base_builder_repo():
       'container',
       'images',
       'list-tags',
-      'gcr.io/oss-fuzz-base/base-builder',
+      'ghcr.io/aixcc-finals/base-builder',
       '--format=json',
       '--sort-by=timestamp',
   ],

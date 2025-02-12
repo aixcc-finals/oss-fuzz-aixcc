@@ -40,7 +40,7 @@ BASE_PROJECT = 'oss-fuzz-base'
 TAG_PREFIX = f'gcr.io/{BASE_PROJECT}/'
 MAJOR_TAG = 'v1'
 MANIFEST_IMAGES = [
-    'gcr.io/oss-fuzz-base/base-builder', 'gcr.io/oss-fuzz-base/base-runner'
+    'ghcr.io/aixcc-finals/base-builder', 'ghcr.io/aixcc-finals/base-runner'
 ]
 TIMEOUT = str(6 * 60 * 60)
 

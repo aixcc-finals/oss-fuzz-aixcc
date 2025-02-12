@@ -21,7 +21,7 @@ import logging
 
 INFRA_DIR = os.path.dirname(os.path.dirname(__file__))
 DEFAULT_ENVS = [('DRY_RUN', '0'), ('SANITIZER', 'address')]
-BASE_CIFUZZ_DOCKER_TAG = 'gcr.io/oss-fuzz-base'
+BASE_CIFUZZ_DOCKER_TAG = 'ghcr.io/aixcc-finals'
 
 
 def set_default_env_var_if_unset(env_var, default_value):

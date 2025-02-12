@@ -14,7 +14,7 @@
 #
 # Build and run the proof of error in shell-quote v1.7.3.
 
-FROM gcr.io/oss-fuzz-base/base-builder
+FROM ghcr.io/aixcc-finals/base-builder
 
 RUN apt update && \
   apt install -y \

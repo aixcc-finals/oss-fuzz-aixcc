@@ -51,7 +51,7 @@ def main():
   subprocess.run(['gcloud', 'projects', 'list', '--limit=1'], check=True)
 
   images = [
-      'gcr.io/oss-fuzz-base/base-builder', 'gcr.io/oss-fuzz-base/base-runner'
+      'ghcr.io/aixcc-finals/base-builder', 'ghcr.io/aixcc-finals/base-runner'
   ]
   results = [push_manifest(image) for image in images]
   return 0 if all(results) else 1

@@ -40,7 +40,7 @@ DOCKER_TEMPLATE = """\
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/%(base_builder)s
+FROM ghcr.io/aixcc-finals/%(base_builder)s
 RUN apt-get update && apt-get install -y make autoconf automake libtool
 RUN git clone --depth 1 <git_url> %(project_name)s     # or use other version control
 WORKDIR %(project_name)s
@@ -48,7 +48,7 @@ COPY build.sh $SRC/
 """
 
 EXTERNAL_DOCKER_TEMPLATE = """\
-FROM gcr.io/oss-fuzz-base/%(base_builder)s:v1
+FROM ghcr.io/aixcc-finals/%(base_builder)s:v1
 RUN apt-get update && apt-get install -y make autoconf automake libtool
 COPY . $SRC/%(project_name)s
 WORKDIR %(project_name)s

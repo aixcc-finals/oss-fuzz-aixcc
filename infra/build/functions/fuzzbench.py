@@ -31,7 +31,7 @@ FUZZBENCH_PATH = '/fuzzbench'
 def get_engine_project_image(fuzzing_engine, project):
   """Returns the name of an image used to build |project| with
   |fuzzing_engine|."""
-  return f'gcr.io/oss-fuzz-base/{fuzzing_engine}/{project.name}'
+  return f'ghcr.io/aixcc-finals/{fuzzing_engine}/{project.name}'
 
 
 def get_env(project, build):
@@ -128,14 +128,14 @@ def get_build_steps(  # pylint: disable=too-many-locals, too-many-arguments
       },
       {
           'name': 'gcr.io/cloud-builders/docker',
-          'args': ['pull', 'gcr.io/oss-fuzz-base/base-builder-fuzzbench']
+          'args': ['pull', 'ghcr.io/aixcc-finals/base-builder-fuzzbench']
       },
       {  # TODO(metzman): Don't overwrite base-builder
           'name':
               'gcr.io/cloud-builders/docker',
           'args': [
-              'tag', 'gcr.io/oss-fuzz-base/base-builder-fuzzbench',
-              'gcr.io/oss-fuzz-base/base-builder'
+              'tag', 'ghcr.io/aixcc-finals/base-builder-fuzzbench',
+              'ghcr.io/aixcc-finals/base-builder'
           ]
       },
   ]

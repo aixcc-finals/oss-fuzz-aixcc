@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 ################################################################################
-"""Script for building and pushing base-images to gcr.io/oss-fuzz-base/ with
+"""Script for building and pushing base-images to ghcr.io/aixcc-finals/ with
 "-test" suffix. This is useful for using the build infra to test image
 changes."""
 import logging

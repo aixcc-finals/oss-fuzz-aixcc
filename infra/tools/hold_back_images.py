@@ -93,7 +93,7 @@ def hold_image(project, hold_image_digest, update_held, issue_number):
   with open(dockerfile_path, 'r') as dockerfile_handle:
     dockerfile = dockerfile_handle.readlines()
   for idx, line in enumerate(dockerfile[:]):
-    if not line.startswith('FROM gcr.io/oss-fuzz-base/base-builder'):
+    if not line.startswith('FROM ghcr.io/aixcc-finals/base-builder'):
       continue
 
     hold_image_digest, should_hold = get_hold_image_digest(

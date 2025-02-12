@@ -3,11 +3,11 @@ steps:
   args:
   - build
   - '-t'
-  - gcr.io/oss-fuzz-base/trial-build
+  - ghcr.io/aixcc-finals/trial-build
   - '-f'
   - infra/build/functions/trial_build/Dockerfile
   - .
-- name: 'gcr.io/oss-fuzz-base/trial-build'
+- name: 'ghcr.io/aixcc-finals/trial-build'
   args: []
   env:
     - 'PULL_REQUEST_NUMBER=${_PR_NUMBER}'

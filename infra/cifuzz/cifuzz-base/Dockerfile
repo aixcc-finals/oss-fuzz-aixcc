@@ -14,7 +14,7 @@
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/base-runner
+FROM ghcr.io/aixcc-finals/base-runner
 
 RUN apt-get update && \
     apt-get install -y systemd && \

@@ -103,7 +103,7 @@
       "-e",
       "SANITIZER=address",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer address --engine centipede --architecture x86_64 test-project\npython infra/helper.py check_build --sanitizer address --engine centipede --architecture x86_64 test-project\n********************************************************************************\" && false)"
@@ -111,7 +111,7 @@
     "id": "build-check-centipede-address-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=centipede",
@@ -135,21 +135,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/centipede-address-x86_64/test-project-address-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.address",
       "test_url"
@@ -244,7 +244,7 @@
       "-e",
       "SANITIZER=none",
       "-t",
-      "gcr.io/oss-fuzz-base/base-runner",
+      "ghcr.io/aixcc-finals/base-runner",
       "bash",
       "-c",
       "test_all.py || (echo \"********************************************************************************\nBuild checks failed.\nTo reproduce, run:\npython infra/helper.py build_image test-project\npython infra/helper.py build_fuzzers --sanitizer none --engine centipede --architecture x86_64 test-project\npython infra/helper.py check_build --sanitizer none --engine centipede --architecture x86_64 test-project\n********************************************************************************\" && false)"
@@ -252,7 +252,7 @@
     "id": "build-check-centipede-none-x86_64"
   },
   {
-    "name": "gcr.io/oss-fuzz-base/base-runner",
+    "name": "ghcr.io/aixcc-finals/base-runner",
     "env": [
       "ARCHITECTURE=x86_64",
       "FUZZING_ENGINE=centipede",
@@ -276,21 +276,21 @@
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/srcmap.json",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/out/centipede-none-x86_64/test-project-none-202001010000.zip",
       "test_url"
     ]
   },
   {
-    "name": "gcr.io/oss-fuzz-base/uploader",
+    "name": "ghcr.io/aixcc-finals/uploader",
     "args": [
       "/workspace/targets.list.none",
       "test_url"
