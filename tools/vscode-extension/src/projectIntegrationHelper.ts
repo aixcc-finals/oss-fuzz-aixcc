@@ -292,10 +292,10 @@ function getLicenseHeader() {
 
 function getBaseDockerFile(language: string) {
   const languageToBasebuilder: {[id: string]: string} = {
-    java: 'gcr.io/oss-fuzz-base/base-builder-jvm',
-    cpp: 'gcr.io/oss-fuzz-base/base-builder',
-    c: 'gcr.io/oss-fuzz-base/base-builder',
-    python: 'gcr.io/oss-fuzz-base/base-builder-python',
+    java: 'ghcr.io/aixcc-finals/base-builder-jvm',
+    cpp: 'ghcr.io/aixcc-finals/base-builder',
+    c: 'ghcr.io/aixcc-finals/base-builder',
+    python: 'ghcr.io/aixcc-finals/base-builder-python',
   };
   let dockerFileContent = getLicenseHeader();
   dockerFileContent += '\n' + 'FROM ' + languageToBasebuilder[language] + '\n';
@@ -428,7 +428,7 @@ RUN git clone --depth 1 ${projectGithubRepository} ${projectNameFromRepo}
 WORKDIR ${projectNameFromRepo}
 COPY build.sh *.cpp $SRC/`;
 
-    const dockerfileTemplateClusterfuzzLite = `FROM gcr.io/oss-fuzz-base/base-builder
+    const dockerfileTemplateClusterfuzzLite = `FROM ghcr.io/aixcc-finals/base-builder
 RUN apt-get update && apt-get install -y make autoconf automake libtool
 
 COPY . $SRC/${baseName}
@@ -548,7 +548,7 @@ RUN git clone --depth 1 ${projectGithubRepository} ${projectNameFromRepo}
 WORKDIR ${projectNameFromRepo}
 COPY build.sh *.cpp $SRC/`;
 
-    const dockerfileTemplateClusterfuzzLite = `FROM gcr.io/oss-fuzz-base/base-builder
+    const dockerfileTemplateClusterfuzzLite = `FROM ghcr.io/aixcc-finals/base-builder
 RUN apt-get update && apt-get install -y make autoconf automake libtool
 
 COPY . $SRC/${baseName}
