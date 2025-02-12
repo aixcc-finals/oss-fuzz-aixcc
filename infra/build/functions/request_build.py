@@ -23,7 +23,7 @@ import yaml
 import build_project
 import datastore_entities
 
-BASE_PROJECT = 'oss-fuzz-base'
+BASE_PROJECT = 'aixcc-finals'
 MAX_BUILD_HISTORY_LENGTH = 64
 QUEUE_TTL_SECONDS = 60 * 60 * 24  # 24 hours.
 

@@ -22,7 +22,7 @@ from google.cloud import ndb
 import build_and_run_coverage
 import request_build
 
-BASE_PROJECT = 'oss-fuzz-base'
+BASE_PROJECT = 'aixcc-finals'
 
 
 # TODO (navidem): write test, currently tested manually.

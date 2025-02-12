@@ -28,7 +28,7 @@ PROJECTS_DIR = os.path.join(ROOT_DIR, 'projects')
 
 IMAGE_DIGEST_REGEX = re.compile(r'\[(.+)\]\n')
 FROM_LINE_REGEX = re.compile(
-    r'FROM (gcr.io\/oss-fuzz-base\/base-builder[\-a-z0-9]*)(\@?.*)')
+    r'FROM (gcr.io\/aixcc-finals\/base-builder[\-a-z0-9]*)(\@?.*)')
 
 
 def get_latest_docker_image_digest(image):

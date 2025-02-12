@@ -35,7 +35,7 @@ from oauth2client import service_account as service_account_lib
 import requests
 import yaml
 
-BASE_IMAGES_PROJECT = 'oss-fuzz-base'
+BASE_IMAGES_PROJECT = 'aixcc-finals'
 IMAGE_PROJECT = 'oss-fuzz'
 
 BUILD_TIMEOUT = 20 * 60 * 60

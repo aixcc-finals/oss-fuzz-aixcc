@@ -641,7 +641,7 @@ def build_image_impl(project, cache=True, pull=False, architecture='x86_64'):
   image_name = project.name
 
   if is_base_image(image_name):
-    image_project = 'oss-fuzz-base'
+    image_project = 'aixcc-finals'
     docker_build_dir = os.path.join(OSS_FUZZ_DIR, 'infra', 'base-images',
                                     image_name)
     dockerfile_path = os.path.join(docker_build_dir, 'Dockerfile')
@@ -1694,7 +1694,7 @@ def shell(args):
     env += args.e
 
   if is_base_image(args.project.name):
-    image_project = 'oss-fuzz-base'
+    image_project = 'aixcc-finals'
     out_dir = _get_out_dir()
   else:
     image_project = 'oss-fuzz'

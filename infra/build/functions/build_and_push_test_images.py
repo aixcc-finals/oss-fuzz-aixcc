@@ -28,7 +28,7 @@ import yaml
 import base_images
 import build_lib
 
-CLOUD_PROJECT = 'oss-fuzz-base'
+CLOUD_PROJECT = 'aixcc-finals'
 INFRA_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 IMAGES_DIR = os.path.join(INFRA_DIR, 'base-images')
 OSS_FUZZ_ROOT = os.path.dirname(INFRA_DIR)
@@ -71,7 +71,7 @@ def _run_cloudbuild(build_body):
     yaml.dump(build_body, yaml_file_handle)
 
   subprocess.run([
-      'gcloud', 'builds', 'submit', '--project=oss-fuzz-base',
+      'gcloud', 'builds', 'submit', '--project=aixcc-finals',
       f'--config={yaml_file}'
   ],
                  cwd=OSS_FUZZ_ROOT,
