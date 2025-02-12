@@ -14,7 +14,7 @@
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/base-clang
+FROM ghcr.io/aixcc-finals/base-clang
 
 COPY install_deps.sh /
 RUN /install_deps.sh && rm /install_deps.sh

@@ -14,7 +14,7 @@
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/base-runner
+FROM ghcr.io/aixcc-finals/base-runner
 RUN apt-get update && apt-get install -y valgrind zip
 
 # Installing GDB 12, re https://github.com/google/oss-fuzz/issues/7513.

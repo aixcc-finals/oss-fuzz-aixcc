@@ -14,7 +14,7 @@
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/base-builder AS base
+FROM ghcr.io/aixcc-finals/base-builder AS base
 
 ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64
 ENV JAVA_15_HOME /usr/lib/jvm/java-15-openjdk-amd64

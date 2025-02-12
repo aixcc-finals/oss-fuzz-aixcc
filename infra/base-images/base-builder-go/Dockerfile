@@ -14,7 +14,7 @@
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/base-builder
+FROM ghcr.io/aixcc-finals/base-builder
 
 # Set up Golang environment variables (copied from /root/.bash_profile).
 ENV GOPATH /root/go

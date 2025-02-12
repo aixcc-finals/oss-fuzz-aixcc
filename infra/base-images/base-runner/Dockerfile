@@ -16,22 +16,22 @@
 
 # Build rust stuff in its own image. We only need the resulting binaries.
 # Keeping the rust toolchain in the image wastes 1 GB.
-FROM gcr.io/oss-fuzz-base/base-image as temp-runner-binary-builder
+FROM ghcr.io/aixcc-finals/base-image as temp-runner-binary-builder
 
 RUN apt-get update && apt-get install -y cargo libyaml-dev
 RUN cargo install rustfilt
 
 # Using multi-stage build to copy some LLVM binaries needed in the runner image.
-FROM gcr.io/oss-fuzz-base/base-clang AS base-clang
-FROM gcr.io/oss-fuzz-base/base-builder-ruby AS base-ruby
+FROM ghcr.io/aixcc-finals/base-clang AS base-clang
+FROM ghcr.io/aixcc-finals/base-builder-ruby AS base-ruby
 
 # The base builder image compiles a specific Python version. Using a multi-stage build
 # to copy that same Python interpreter into the runner image saves build time and keeps
 # the Python versions in sync.
-FROM gcr.io/oss-fuzz-base/base-builder AS base-builder
+FROM ghcr.io/aixcc-finals/base-builder AS base-builder
 
 # Real image that will be used later.
-FROM gcr.io/oss-fuzz-base/base-image
+FROM ghcr.io/aixcc-finals/base-image
 
 COPY --from=temp-runner-binary-builder /root/.cargo/bin/rustfilt /usr/local/bin
 

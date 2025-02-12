@@ -14,7 +14,7 @@
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/base-builder
+FROM ghcr.io/aixcc-finals/base-builder
 
 RUN git clone https://github.com/trailofbits/ruzzy.git $SRC/ruzzy
 

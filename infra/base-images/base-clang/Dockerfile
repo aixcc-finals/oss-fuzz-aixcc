@@ -16,7 +16,7 @@
 
 # Docker image with clang installed.
 
-FROM gcr.io/oss-fuzz-base/base-image
+FROM ghcr.io/aixcc-finals/base-image
 
 ARG arch=x86_64
 
