@@ -37,7 +37,7 @@ BASE_IMAGES = [
     'base-runner-debug',
 ]
 BASE_PROJECT = 'aixcc-finals'
-TAG_PREFIX = f'gcr.io/{BASE_PROJECT}/'
+TAG_PREFIX = f'ghcr.io/{BASE_PROJECT}/'
 MAJOR_TAG = 'v1'
 MANIFEST_IMAGES = [
     'ghcr.io/aixcc-finals/base-builder', 'ghcr.io/aixcc-finals/base-runner'

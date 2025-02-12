@@ -645,18 +645,19 @@ def build_image_impl(project, cache=True, pull=False, architecture='x86_64'):
     docker_build_dir = os.path.join(OSS_FUZZ_DIR, 'infra', 'base-images',
                                     image_name)
     dockerfile_path = os.path.join(docker_build_dir, 'Dockerfile')
+    image_name = 'ghcr.io/%s/%s' % (image_project, image_name)
   else:
     if not check_project_exists(project):
       return False
     dockerfile_path = project.dockerfile_path
     docker_build_dir = project.path
     image_project = 'oss-fuzz'
+    image_name = 'gcr.io/%s/%s' % (image_project, image_name)
 
   if pull and not pull_images(project.language):
     return False
 
   build_args = []
-  image_name = 'gcr.io/%s/%s' % (image_project, image_name)
   if architecture == 'aarch64':
     build_args += [
         'buildx',
@@ -1695,9 +1696,11 @@ def shell(args):
 
   if is_base_image(args.project.name):
     image_project = 'aixcc-finals'
+    image_addr = 'ghcr.io/%s/%s' % (image_project, args.project.name)
     out_dir = _get_out_dir()
   else:
     image_project = 'oss-fuzz'
+    image_addr = 'gcr.io/%s/%s' % (image_project, args.project.name)
     out_dir = args.project.out
 
   run_args = _env_to_docker_args(env)
@@ -1712,7 +1715,7 @@ def shell(args):
       '-v',
       '%s:/out' % out_dir, '-v',
       '%s:/work' % args.project.work, '-t',
-      'gcr.io/%s/%s' % (image_project, args.project.name), '/bin/bash'
+      '%s' % image_addr, '/bin/bash'
   ])
 
   docker_run(run_args, architecture=args.architecture)
