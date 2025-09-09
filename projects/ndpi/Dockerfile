@@ -16,7 +16,12 @@
 
 FROM ghcr.io/aixcc-finals/base-builder:v1.3.0
 RUN apt-get update && apt-get install -y make autoconf automake autogen pkg-config libtool flex bison cmake libnuma-dev libpcre2-dev
-RUN git clone --depth 1 https://github.com/ntop/nDPI.git ndpi
-ADD https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz libpcap-1.9.1.tar.gz
+
+#RUN git clone --depth 1 https://github.com/ntop/nDPI.git ndpi
+ADD pkgs/ndpi.tar.gz $SRC/
+
+#ADD https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz libpcap-1.9.1.tar.gz
+COPY pkgs/libpcap-1.9.1.tar.gz $SRC/
+
 COPY build.sh $SRC/
-WORKDIR $SRC
+WORKDIR $SRC/ndpi

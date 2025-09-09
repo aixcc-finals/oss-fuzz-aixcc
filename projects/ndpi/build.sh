@@ -15,4 +15,8 @@
 #
 ################################################################################
 
-bash -x ./ndpi/tests/ossfuzz.sh
+pushd $SRC
+
+bash -x $SRC/ndpi/tests/ossfuzz.sh
+
+popd
