@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,30 +16,21 @@
 
 FROM ghcr.io/aixcc-finals/base-builder-jvm:v1.3.0
 
-# Install Java 17 using Azul Zulu distribution, because
-#
-# 1. Log4j build requires Java 17, `base-builder-jvm` provides Java 15 (as of 2024-07-10)
-# 2. Apache Logging Services uses Zulu[1] as the OpenJDK distribution in CI
-#
-# [1] https://github.com/apache/logging-parent/blob/main/.github/workflows/build-reusable.yaml#L54
+COPY pkgs/maven.zip $SRC/
 
-# Add the Zulu APT repository
-RUN apt-get update && \
-    apt-get install -y gnupg ca-certificates && \
-    wget -q -O - https://repos.azul.com/azul-repo.key | \
-    gpg --dearmor -o /usr/share/keyrings/azul.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | \
-    tee /etc/apt/sources.list.d/zulu.list
+RUN unzip maven.zip -d "$SRC/maven-3.6.3" && rm -rf maven.zip
 
+ENV MVN=$SRC/maven-3.6.3/apache-maven-3.6.3/bin/mvn
 
-# Install Zulu 17
-RUN apt-get update && \
-    apt-get install -y zulu17-jdk
+COPY fuzz-targets $SRC/fuzz-targets
 
-# Update Java-related environment variables
-ENV JAVA_HOME /usr/lib/jvm/zulu17
-ENV JVM_LD_LIBRARY_PATH /usr/lib/jvm/zulu17/lib/server
-ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/out:/usr/lib/jvm/zulu17/bin
+COPY pkgs/logging-log4j2.tar.gz $SRC/logging-log4j2.tar.gz
+RUN tar -zxf $SRC/logging-log4j2.tar.gz -C $SRC && rm $SRC/logging-log4j2.tar.gz
 
-COPY build.sh $SRC/
-WORKDIR $SRC
+ADD pkgs/OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz $SRC/
+
+ENV JAVA_HOME=$SRC/jdk8u432-b06
+
+COPY build.sh *.options $SRC/
+WORKDIR $SRC/logging-log4j2
+

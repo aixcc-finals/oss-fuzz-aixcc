@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <!-- this has to be at or below "warn" or else the logger won't log anything and won't trigger povs.
+      e.g. "info" and "debug" are ok. "error" and "off" will disable this fuzzer.
+    -->
+    <Root level="WARN">
+      <appender-ref ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>
