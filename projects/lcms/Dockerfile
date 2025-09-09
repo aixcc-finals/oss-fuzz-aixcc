@@ -16,7 +16,8 @@
 
 FROM ghcr.io/aixcc-finals/base-builder:v1.3.0
 RUN apt-get update && apt-get install -y make autoconf automake libtool
-RUN git clone --depth 1 https://github.com/mm2/Little-CMS.git lcms
+#RUN git clone --depth 1 https://github.com/mm2/Little-CMS.git lcms
+ADD pkgs/lcms.tar.gz $SRC/
 RUN mkdir $SRC/seeds && \
     cd seeds && \
     cp $SRC/lcms/testbed/bad.icc . && \
@@ -33,5 +34,5 @@ RUN mkdir $SRC/seeds && \
     cp $SRC/lcms/testbed/test5.icc . && \
     zip -rj $SRC/seed_corpus.zip $SRC/seeds/*
 
-WORKDIR lcms
+WORKDIR $SRC/lcms
 COPY build.sh *.c *.options *.dict $SRC/
