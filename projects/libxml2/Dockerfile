@@ -27,8 +27,14 @@ RUN apt-get update && \
         zlib1g-dev liblzma-dev \
         $EXTRA_PACKAGES
 # Build requires automake 1.16.3
-RUN curl -LO http://mirrors.kernel.org/ubuntu/pool/main/a/automake-1.16/automake_1.16.5-1.3_all.deb && \
-    apt install ./automake_1.16.5-1.3_all.deb
-RUN git clone --depth 1 https://gitlab.gnome.org/GNOME/libxml2.git
+#RUN curl -LO http://mirrors.kernel.org/ubuntu/pool/main/a/automake-1.16/automake_1.16.5-1.3_all.deb && \
+COPY pkgs/automake_1.16.5-1.3_all.deb $SRC/
+RUN apt install ./automake_1.16.5-1.3_all.deb
+#RUN git clone --depth 1 https://gitlab.gnome.org/GNOME/libxml2.git
+
+WORKDIR $SRC
+COPY pkgs/libxml2.tar.gz $SRC/libxml2.tar.gz
+RUN tar -zxf $SRC/libxml2.tar.gz && rm $SRC/libxml2.tar.gz
+
 WORKDIR libxml2
 COPY build.sh $SRC/
