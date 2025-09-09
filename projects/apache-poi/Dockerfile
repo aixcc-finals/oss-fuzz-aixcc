@@ -16,39 +16,53 @@
 
 FROM ghcr.io/aixcc-finals/base-builder-jvm:v1.3.0
 
-RUN curl -L https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip && \
-unzip maven.zip -d $SRC/maven-3.6.3 && \
-rm -rf maven.zip
+WORKDIR $SRC
 
-ENV MVN $SRC/maven-3.6.3/apache-maven-3.6.3/bin/mvn
-ENV TARGET_PACKAGE_PREFIX org.apache.poi.*:org.apache.xmlbeans.*
+COPY pkgs/maven.zip $SRC/
+
+RUN unzip maven.zip -d "$SRC/maven-3.6.3" && rm -rf maven.zip
+
+ENV MVN=$SRC/maven-3.6.3/apache-maven-3.6.3/bin/mvn
+ENV TARGET_PACKAGE_PREFIX=org.apache.poi.*:org.apache.xmlbeans.*
 
 # Newer JDK releases are listed at https://github.com/adoptium/temurin8-binaries/releases/
-RUN curl -L https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u432-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz -o OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz && \
-  tar xvf OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz && \
+COPY pkgs/OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz $SRC/
+RUN tar xvf OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz && \
   rm -rf OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz
 
-ENV JAVA_HOME_8 $SRC/jdk8u432-b06
+ENV JAVA_HOME_8=$SRC/jdk8u432-b06
 
 # Newer JDK releases are listed at https://github.com/adoptium/temurin11-binaries/releases/
-RUN curl -L https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.25%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.25_9.tar.gz -o OpenJDK11U-jdk_x64_linux_hotspot_11.0.25_9.tar.gz && \
-  tar xvf OpenJDK11U-jdk_x64_linux_hotspot_11.0.25_9.tar.gz && \
+COPY pkgs/OpenJDK11U-jdk_x64_linux_hotspot_11.0.25_9.tar.gz $SRC/
+RUN tar xvf OpenJDK11U-jdk_x64_linux_hotspot_11.0.25_9.tar.gz && \
   rm -rf OpenJDK11U-jdk_x64_linux_hotspot_11.0.25_9.tar.gz
 
-ENV JAVA_HOME_11 $SRC/jdk-11.0.25+9
+ENV JAVA_HOME_11=$SRC/jdk-11.0.25+9
 
-WORKDIR ${SRC}
 #
 # clone repository
 #
-RUN git clone --depth 1 https://github.com/apache/poi.git
+COPY pkgs/apache-poi.tar.gz $SRC/
+RUN tar -xzvf apache-poi.tar.gz && \
+    mv apache-poi poi && rm apache-poi.tar.gz
 
 # install packages required for font-handling and other code in java.awt.*
-RUN apt-get update && apt-get install -y libxext6 libx11-6 libxrender1 libxtst6 libxi6 libxcb1 libxau6 libxdmcp6 \
+RUN apt-get update \
+    && apt-get install -y  \
+    fontconfig=2.13.1-2ubuntu3 \
+    libfreetype6=2.10.1-2ubuntu0.4  \
+    libxext6=2:1.3.4-0ubuntu1  \
+    libx11-6=2:1.6.9-2ubuntu1.6 \
+    libxrender1=1:0.9.10-1  \
+    libxtst6=2:1.2.3-1 \
+    libxi6=2:1.7.10-0ubuntu1 \
+    libxcb1=1.14-2 \
+    libxau6=1:1.0.9-0ubuntu1 \
+    libxdmcp6=1:1.1.3-0ubuntu1 --no-install-recommends \
 && apt-get clean autoclean \
 && apt-get autoremove --yes \
-&& rm -rf /var/lib/{apt,dpkg,cache,log}/
+&& rm -rf /var/lib/apt && rm -rf var/lib/dpkg && rm -rf /var/lib/cache && rm -rf /var/lib/log
 
-ADD pom.xml build.sh ${SRC}/
-ADD src/ ${SRC}/src/
-WORKDIR ${SRC}/poi
+COPY pom.xml build.sh *.options $SRC/
+COPY src/ $SRC/src/
+WORKDIR $SRC/poi
