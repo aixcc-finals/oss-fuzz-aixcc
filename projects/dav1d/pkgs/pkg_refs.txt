@@ -1,0 +1,3 @@
+aixcc-challenges/dav1d@caef968117eb2d6d7224e8d29ec67ff79b0025f8
+curl --silent -O https://storage.googleapis.com/aom-test-data/fuzzer/dec_fuzzer_seed_corpus.zip
+curl --silent -O https://download.videolan.org/contrib/dav1d/dav1d_fuzzer_seed_corpus.zip

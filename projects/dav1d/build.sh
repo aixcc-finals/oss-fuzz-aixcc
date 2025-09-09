@@ -44,9 +44,18 @@ mkdir -p ${WORK}/tmp/testdata
 unzip -q $SRC/dav1d_fuzzer_seed_corpus.zip -d ${WORK}/tmp/testdata
 cp $SRC/dec_fuzzer_seed_corpus.zip ${WORK}/tmp/seed_corpus.zip
 (cd ${WORK}/tmp && zip -q -m -r -0 ${WORK}/tmp/seed_corpus.zip testdata)
+cp $SRC/*.options $OUT/
 
 # copy fuzzers and link testdata
 for fuzzer in $(find ${build}/tests/libfuzzer -maxdepth 1 -type f -executable -name 'dav1d_fuzzer*'); do
 	cp "${fuzzer}" $OUT/
 	cp ${WORK}/tmp/seed_corpus.zip $OUT/$(basename "$fuzzer")_seed_corpus.zip
 done
+
+# Add our workaround script
+cp $SRC/dav1d/tests/libfuzzer/dav1d_fuzzer_mt@NO_OOM $OUT
+chmod +x $OUT/dav1d_fuzzer_mt@NO_OOM
+
+# Unset the original binaries so our infra doesn't see them until they're ready
+chmod -x $OUT/dav1d_fuzzer
+chmod -x $OUT/dav1d_fuzzer_mt

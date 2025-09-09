@@ -1,0 +1,5 @@
+[libfuzzer]
+rss_limit_mb=0
+runs=4
+timeout=300
+timeout_exitcode=0
