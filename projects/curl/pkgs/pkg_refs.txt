@@ -1,0 +1,2 @@
+aixcc-challenges/curl@2d4852af83c9e8c4db979a9f0d328f253ad64c0b
+aixcc-challenges/curl-fuzzer@e2a900d659dce199691be52071426a146f96400f
