@@ -1,0 +1,2 @@
+aixcc-challenges/hertzbeat@d077c7221142f794624e0b08aa9d057da556090e
+curl -L https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip

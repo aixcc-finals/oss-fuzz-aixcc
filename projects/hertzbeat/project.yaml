@@ -1,0 +1,7 @@
+homepage: "https://github.com/apache/hertzbeat"
+language: jvm
+fuzzing_engines:
+  - libfuzzer
+sanitizers:
+  - address
+main_repo: "https://github.com/apache/hertzbeat"
