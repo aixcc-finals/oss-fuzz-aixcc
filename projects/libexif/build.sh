@@ -27,6 +27,8 @@ cp libexif/test/testdata/*.jpg exif_corpus
 zip -r "$WORK/exif_seed_corpus.zip" exif_corpus/
 popd
 
+cp ${SRC}/*.options ${OUT}/
+
 for fuzzer in $(find $SRC/ -name '*_fuzzer.cc'); do
   fuzzer_basename=$(basename -s .cc $fuzzer)
   $CXX $CXXFLAGS \
