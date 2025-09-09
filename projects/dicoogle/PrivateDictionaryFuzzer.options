@@ -1,0 +1,3 @@
+[libfuzzer]
+timeout_exitcode=0
+timeout=120
