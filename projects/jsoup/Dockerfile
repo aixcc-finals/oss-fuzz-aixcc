@@ -16,23 +16,32 @@
 
 FROM ghcr.io/aixcc-finals/base-builder-jvm:v1.3.0
 
-RUN curl -L https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip && \
-    unzip maven.zip -d $SRC/maven && \
+#RUN curl -L https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip && \
+
+COPY pkgs/maven.zip $SRC/ 
+RUN unzip maven.zip -d $SRC/maven && \
     rm -rf maven.zip
 
 ENV MVN $SRC/maven/apache-maven-3.6.3/bin/mvn
 
-RUN git clone --depth 1 https://github.com/google/fuzzing && \
-    mv fuzzing/dictionaries/html.dict $SRC/HtmlFuzzer.dict && \
-    mv fuzzing/dictionaries/xml.dict $SRC/XmlFuzzer.dict && \
-    rm -rf fuzzing
+#RUN git clone --depth 1 https://github.com/google/fuzzing && \
+#    mv fuzzing/dictionaries/html.dict $SRC/HtmlFuzzer.dict && \
+#    mv fuzzing/dictionaries/xml.dict $SRC/XmlFuzzer.dict && \
+#    rm -rf fuzzing
 
-RUN git clone --depth 1 https://github.com/dvyukov/go-fuzz-corpus && \
-    zip -j $SRC/XmlFuzzer_seed_corpus.zip go-fuzz-corpus/xml/corpus/* && \
-    rm -rf go-fuzz-corpus
+COPY pkgs/html.dict $SRC/HtmlFuzzer.dict
+COPY pkgs/xml.dict $SRC/XmlFuzzer.dict
 
-RUN git clone --depth 1 https://github.com/jhy/jsoup/
+#RUN git clone --depth 1 https://github.com/dvyukov/go-fuzz-corpus && \
+#    zip -j $SRC/XmlFuzzer_seed_corpus.zip go-fuzz-corpus/xml/corpus/* && \
+#    rm -rf go-fuzz-corpus
+
+COPY pkgs/XmlFuzzer_seed_corpus.zip $SRC/
+
+#RUN git clone --depth 1 https://github.com/jhy/jsoup/
+
+ADD pkgs/jsoup.tar.gz $SRC/
 
 COPY build.sh $SRC/
-COPY HtmlFuzzer.java XmlFuzzer.java $SRC/
+COPY HtmlFuzzer.java XmlFuzzer.java *.options $SRC/
 WORKDIR $SRC/jsoup

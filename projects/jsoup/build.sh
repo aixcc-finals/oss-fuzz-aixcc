@@ -24,6 +24,8 @@ CURRENT_VERSION=$($MVN org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate
  -Dexpression=project.version -q -DforceStdout)
 cp "target/jsoup-$CURRENT_VERSION.jar" $OUT/jsoup.jar
 
+cp ${SRC}/*.options ${OUT}/
+
 ALL_JARS="jsoup.jar"
 
 # The classpath at build-time includes the project jars in $OUT as well as the
