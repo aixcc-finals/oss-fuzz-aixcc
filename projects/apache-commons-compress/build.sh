@@ -18,13 +18,15 @@
 # Move seed corpus and dictionary.
 mv $SRC/{*.zip,*.dict} $OUT
 
-pushd "$SRC/commons-compress"
-  MAVEN_ARGS="-Dmaven.test.skip=true -Djavac.src.version=15 -Djavac.target.version=15"
-  $MVN package org.apache.maven.plugins:maven-shade-plugin:3.5.1:shade $MAVEN_ARGS
+MAVEN_ARGS="-Dmaven.test.skip=true -Djacoco.skip -Drat.skip -Djavac.src.version=15 -Djavac.target.version=15"
+$MVN package org.apache.maven.plugins:maven-shade-plugin:3.5.1:shade $MAVEN_ARGS
   CURRENT_VERSION=$($MVN org.apache.maven.plugins:maven-help-plugin:3.4.0:evaluate \
    -Dexpression=project.version -q -DforceStdout)
-  cp "target/commons-compress-$CURRENT_VERSION.jar" $OUT/commons-compress.jar
-popd
+  
+cp "target/commons-compress-$CURRENT_VERSION.jar" $OUT/commons-compress.jar
+cp ${SRC}/*.options ${OUT}/
+
+cd $SRC
 
 ALL_JARS="commons-compress.jar"
 
