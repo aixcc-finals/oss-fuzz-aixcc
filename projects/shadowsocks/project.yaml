@@ -1,0 +1,8 @@
+homepage: "shadowsocks-libev"
+language: c
+main_repo: "https://path/to/main/repo.git"
+sanitizers:
+  - address
+  - undefined
+architectures:
+  - x86_64
