@@ -18,6 +18,7 @@
 PROJECT=pdfbox
 PROJECT_GROUP_ID=org.apache.pdfbox
 PROJECT_ARTIFACT_ID=pdfbox
+XMPBOX_ARTIFACT_ID=xmpbox
 MAIN_REPOSITORY=https://github.com/apache/pdfbox/
 
 MAVEN_ARGS="-Djavac.src.version=11 -Djavac.target.version=11 -DskipTests"
@@ -25,10 +26,10 @@ MAVEN_ARGS="-Djavac.src.version=11 -Djavac.target.version=11 -DskipTests"
 function set_project_version_in_fuzz_targets_dependency {
   PROJECT_VERSION=$(cd $PROJECT && $MVN org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
   # set dependency project version in fuzz-targets
-  (cd fuzz-targets && $MVN versions:use-dep-version -Dincludes=$PROJECT_GROUP_ID:$PROJECT_ARTIFACT_ID -DdepVersion=$PROJECT_VERSION -DforceVersion=true)
+  (cd fuzz-targets && $MVN versions:use-dep-version -Dexcludes=com.code-intelligence:jazzer -DdepVersion=$PROJECT_VERSION -DforceVersion=true)
 }
-
-cd project-parent
+cp ${SRC}/*.options ${OUT}/
+cd $SRC/project-parent
 
 # LOCAL_DEV env variable need to be set in local development env
 if [[ -v LOCAL_DEV ]]; then
@@ -44,7 +45,7 @@ if [[ -v LOCAL_DEV ]]; then
   mvn -pl fuzz-targets install
 
 else
-  # Move seed corpus and dictionary.
+  # Move dictionaries
   mv $SRC/*.dict $OUT
 
   set_project_version_in_fuzz_targets_dependency
@@ -55,8 +56,8 @@ else
 
   # build classpath
   $MVN -pl fuzz-targets dependency:build-classpath -Dmdep.outputFile=cp.txt -Dmaven.repo.local=$OUT/m2
-  cp -r $SRC/project-parent/fuzz-targets/target/test-classes/ $OUT/test-classes
-  RUNTIME_CLASSPATH_ABSOLUTE="$(cat fuzz-targets/cp.txt):$OUT/test-classes"
+  cp  $SRC/project-parent/fuzz-targets/target/fuzz-targets-0.0.1-SNAPSHOT.jar $OUT/fuzz-targets.jar
+  RUNTIME_CLASSPATH_ABSOLUTE="$(cat fuzz-targets/cp.txt):$OUT/fuzz-targets.jar"
   # replace $OUT with placeholder $this_dir that will be dissolved at runtime
   RUNTIME_CLASSPATH=$(echo $RUNTIME_CLASSPATH_ABSOLUTE | sed "s|$OUT|\$this_dir|g")
 

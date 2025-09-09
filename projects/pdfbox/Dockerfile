@@ -16,23 +16,40 @@
 
 FROM ghcr.io/aixcc-finals/base-builder-jvm:v1.3.0
 
-RUN curl -L https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip && \
-    unzip maven.zip -d $SRC/maven && \
-    rm -rf maven.zip
+#install tesseract
+RUN set -eux \
+    && apt-get update \
+    && apt-get install --yes --no-install-recommends \
+        tesseract-ocr=4.1.1-2build2 \
+        tesseract-ocr-eng=1:4.00~git30-7274cfa-1 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-ENV MVN $SRC/maven/apache-maven-3.6.3/bin/mvn
+RUN mkdir /usr/my-bin && mv /usr/bin/tesseract /usr/my-bin/tesseract
 
-RUN git clone --depth 1 https://github.com/google/fuzzing && \
-    cp fuzzing/dictionaries/pdf.dict $SRC/PDFStreamParserFuzzer.dict && \
-    cp fuzzing/dictionaries/pdf.dict $SRC/PDFWriteReadFuzzer.dict && \
-    rm -rf fuzzing
+COPY pkgs/maven.zip $SRC/maven.zip
+RUN unzip $SRC/maven.zip -d $SRC/maven && rm $SRC/maven.zip
 
-# if not set python infra helper cannot be used for local testing
+ENV MVN=$SRC/maven/apache-maven-3.9.9/bin/mvn
+
+#RUN git clone --depth 1 https://github.com/google/fuzzing && \
+#    cp fuzzing/dictionaries/pdf.dict $SRC/PDFStreamParserFuzzer.dict && \
+#    cp fuzzing/dictionaries/pdf.dict $SRC/PDFWriteReadFuzzer.dict && \
+#    rm -rf fuzzing \
+
+COPY pkgs/pdf.dict.gz $SRC/pdf.dict.gz
+RUN gunzip $SRC/pdf.dict.gz && \
+    mv $SRC/pdf.dict $SRC/PDFStreamParserFuzzer.dict && \
+    cp $SRC/PDFStreamParserFuzzer.dict $SRC/PDFWriteReadFuzzer.dict
 
 COPY project-parent $SRC/project-parent/
 
 RUN rm -rf $SRC/project-parent/pdfbox
-RUN git clone --depth 1 https://github.com/apache/pdfbox/ $SRC/project-parent/pdfbox
+#RUN git clone --depth 1 https://github.com/apache/pdfbox/ $SRC/project-parent/pdfbox
 
-COPY build.sh $SRC/
-WORKDIR $SRC/
+COPY pkgs/pdfbox.tar.gz $SRC/pdfbox.tar.gz
+RUN tar -zxf $SRC/pdfbox.tar.gz -C $SRC/project-parent && rm $SRC/pdfbox.tar.gz
+
+COPY build.sh *.options $SRC/
+# if not set python infra helper cannot be used for local testing
+WORKDIR $SRC/project-parent/pdfbox
