@@ -16,6 +16,10 @@
 
 FROM ghcr.io/aixcc-finals/base-builder:v1.3.0
 RUN apt-get update && apt-get install -y make autoconf autopoint libtool zip
-RUN git clone https://github.com/tukaani-project/xz.git
+
+#RUN git clone https://github.com/tukaani-project/xz.git
+COPY pkgs/xz.tar.gz $SRC/
+RUN tar -zxf $SRC/xz.tar.gz && rm $SRC/xz.tar.gz
+
 COPY build.sh $SRC/
-WORKDIR xz
+WORKDIR $SRC/xz
