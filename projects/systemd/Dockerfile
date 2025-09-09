@@ -15,6 +15,7 @@
 ################################################################################
 
 FROM ghcr.io/aixcc-finals/base-builder:v1.3.0
-RUN git clone --depth 1 https://github.com/systemd/systemd systemd
-WORKDIR systemd
-COPY build.sh $SRC/
+#RUN git clone --depth 1 https://github.com/systemd/systemd systemd
+ADD pkgs/systemd.tar.gz $SRC/
+WORKDIR $SRC/systemd
+COPY build.sh *.options $SRC/
