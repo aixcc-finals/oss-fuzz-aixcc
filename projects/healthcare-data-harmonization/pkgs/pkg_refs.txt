@@ -1,0 +1,2 @@
+aixcc-challenges/healthcare-data-harmonization@a628c4a310b46e74d00f408a57aff8711c90d5a9
+curl -L https://services.gradle.org/distributions/gradle-7.6-bin.zip -o gradle.zip
