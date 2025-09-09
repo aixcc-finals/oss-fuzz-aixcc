@@ -1,0 +1,2 @@
+aixcc-challenges/dcm4che@d5b4cd32676cf15ab3e38e4f8cdad48d2b9b5536
+curl -L https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
