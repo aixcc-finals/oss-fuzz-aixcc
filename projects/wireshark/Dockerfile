@@ -20,8 +20,14 @@ RUN apt-get update && apt-get install -y ninja-build cmake \
                        flex libc-ares-dev \
                        libglib2.0-dev libgcrypt20-dev
 
-RUN git clone --depth=1 https://gitlab.com/wireshark/wireshark.git
-RUN git clone --depth=1 https://bitbucket.org/jwzawadzki/wireshark-fuzzdb.git
+#RUN git clone --depth=1 https://gitlab.com/wireshark/wireshark.git
+#RUN git clone --depth=1 https://bitbucket.org/jwzawadzki/wireshark-fuzzdb.git
 
-WORKDIR wireshark
-COPY build.sh $SRC/
+COPY pkgs/wireshark.tar.gz $SRC/
+COPY pkgs/wireshark-fuzzdb.tar.gz $SRC/
+
+RUN tar -zxf $SRC/wireshark.tar.gz && rm $SRC/wireshark.tar.gz
+RUN tar -zxf $SRC/wireshark-fuzzdb.tar.gz && rm $SRC/wireshark-fuzzdb.tar.gz
+
+WORKDIR $SRC/wireshark
+COPY build.sh test.sh $SRC/
