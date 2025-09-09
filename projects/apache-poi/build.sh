@@ -94,6 +94,8 @@ RUNTIME_CLASSPATH=$(echo $ALL_JARS | xargs printf -- "\$this_dir/%s:"):\$this_di
 
 MVN_FUZZERS_PREFIX="src/main/java"
 
+cp ${SRC}/*.options ${OUT}/
+
 for fuzzer in $(find ${SRC} -name '*Fuzzer.java'); do
 	# Find our fuzzer inside the maven structure
 	stripped_path=$(echo ${fuzzer} | sed \
