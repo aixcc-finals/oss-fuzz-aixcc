@@ -16,7 +16,8 @@
 
 FROM ghcr.io/aixcc-finals/base-builder:v1.3.0
 RUN apt-get update 
-RUN git clone https://github.com/cesanta/mongoose
-WORKDIR $SRC
-COPY build.sh $SRC/
+#RUN git clone https://github.com/cesanta/mongoose
+ADD pkgs/mongoose.tar.gz $SRC/
+WORKDIR $SRC/mongoose
+COPY build.sh *.options $SRC/
 COPY fuzz_netdriver_http.c $SRC/mongoose/fuzz_netdriver_http.c
