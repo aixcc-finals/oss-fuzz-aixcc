@@ -63,6 +63,8 @@ rm -rf build
 cmake "${cmake_args[@]}" -S . -B build -G Ninja -C ci/cmake-preloads/config-oss-fuzz.cmake
 cmake --build build --parallel --target fuzzers
 
+cp ${SRC}/*.options ${OUT}/
+
 for f in $(find build/Testing/ -name 'TestFuzz*' -type f);
 do
     cp $f $OUT/
