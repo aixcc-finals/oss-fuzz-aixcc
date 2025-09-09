@@ -1,0 +1,4 @@
+aixcc-challenges/commons-compress@0df4a4145516ffcf25f2ff53b759453f405ce966
+google/fuzzing@734e55f3cfed1adbb51bf6cb5c65b4c1197b7089
+dvyukov/go-fuzz-corpus@c42c1b2914c7503500996ee15927d3ab3d2ba968
+curl -L https://archive.apache.org/dist/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.zip -o maven.zip

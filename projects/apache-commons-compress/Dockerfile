@@ -16,29 +16,38 @@
 
 FROM ghcr.io/aixcc-finals/base-builder-jvm:v1.3.0
 
-RUN curl -L https://archive.apache.org/dist/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.zip -o maven.zip && \
-    unzip maven.zip -d $SRC/maven && \
+#RUN curl -L https://archive.apache.org/dist/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.zip -o maven.zip && \
+COPY pkgs/maven.zip $SRC/
+RUN unzip $SRC/maven.zip -d $SRC/maven && \
     rm -rf maven.zip
 
 ENV MVN $SRC/maven/apache-maven-3.9.5/bin/mvn
 
 # Dictionaries
-RUN git clone --depth 1 https://github.com/google/fuzzing && \
+#RUN git clone --depth 1 https://github.com/google/fuzzing && \
+COPY pkgs/fuzzing.tar.gz $SRC/
+RUN tar -xzf $SRC/fuzzing.tar.gz && rm $SRC/fuzzing.tar.gz && \
     mv fuzzing/dictionaries/zip.dict $SRC/CompressZipFuzzer.dict && \
     mv fuzzing/dictionaries/bz2.dict $SRC/CompressorBZip2Fuzzer.dict && \
     rm -rf fuzzing
 
 # Seed corpus (go-fuzz-corpus)
-RUN git clone --depth 1 https://github.com/dvyukov/go-fuzz-corpus && \
+#RUN git clone --depth 1 https://github.com/dvyukov/go-fuzz-corpus && \
+COPY pkgs/go-fuzz-corpus.tar.gz $SRC/
+RUN tar -xzf $SRC/go-fuzz-corpus.tar.gz && rm $SRC/go-fuzz-corpus.tar.gz && \
     zip -j0 $SRC/CompressTarFuzzer_seed_corpus.zip go-fuzz-corpus/tar/corpus/* && \
     zip -j0 $SRC/CompressZipFuzzer_seed_corpus.zip go-fuzz-corpus/zip/corpus/* && \
     zip -j0 $SRC/CompressorBZip2Fuzzer_seed_corpus.zip go-fuzz-corpus/bzip2/corpus/* && \
     zip -j0 $SRC/CompressorGzipFuzzer_seed_corpus.zip go-fuzz-corpus/gzip/corpus/* && \
     zip -j0 $SRC/CompressorSnappyFuzzer_seed_corpus.zip go-fuzz-corpus/snappy/corpus/* && \
+    zip -j0 $SRC/ExpanderFuzzer_seed_corpus.zip go-fuzz-corpus/zip/corpus/* && \
+    zip -uj0 $SRC/ExpanderFuzzer_seed_corpus.zip go-fuzz-corpus/tar/corpus/* && \
     rm -rf go-fuzz-corpus
 
 # Checkout out Compress source code
-RUN git clone --depth 1 https://gitbox.apache.org/repos/asf/commons-compress.git
+#RUN git clone --depth 1 https://gitbox.apache.org/repos/asf/commons-compress.git
+COPY pkgs/commons-compress.tar.gz $SRC/
+RUN tar -xzf $SRC/commons-compress.tar.gz && rm $SRC/commons-compress.tar.gz
 
 # Seed corpus (Compress source code)
 RUN \
@@ -54,15 +63,19 @@ RUN \
     zip -uj0 $SRC/CompressTarFuzzer_seed_corpus.zip commons-compress/src/test/resources/archives/*.tar && \
     zip -uj0 $SRC/CompressTarFuzzer_seed_corpus.zip commons-compress/src/test/resources/longpath/*.tar && \
     zip -uj0 $SRC/CompressTarFuzzer_seed_corpus.zip commons-compress/src/test/resources/longsymlink/*.tar && \
-    zip -uj0 $SRC/CompressZipFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.zip
+    zip -uj0 $SRC/CompressZipFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.zip && \
+    zip -uj0 $SRC/ExpanderFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.zip && \
+    zip -uj0 $SRC/ExpanderFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.ar && \
+    zip -uj0 $SRC/ExpanderFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.cpio && \
+    zip -uj0 $SRC/ExpanderFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.dump && \
+    zip -uj0 $SRC/ExpanderFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.tar
+
 
 RUN \
     zip -uj0 $SRC/CompressorBZip2Fuzzer_seed_corpus.zip commons-compress/src/test/resources/*.bz2 && \
     zip -j0  $SRC/CompressorDeflate64Fuzzer_seed_corpus.zip commons-compress/src/test/resources/*.deflate && \
     zip -uj0 $SRC/CompressorGzipFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.gz && \
     zip -j0  $SRC/CompressorLZ4Fuzzer_seed_corpus.zip commons-compress/src/test/resources/*lz4 && \
-    zip -j0  $SRC/CompressorPack200Fuzzer_seed_corpus.zip commons-compress/src/test/resources/*.pack && \
-    zip -uj0 $SRC/CompressorPack200Fuzzer_seed_corpus.zip commons-compress/src/test/resources/pack200/*.pack && \
     zip -uj0 $SRC/CompressorSnappyFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.sz && \
     zip -j0  $SRC/CompressorZFuzzer_seed_corpus.zip commons-compress/src/test/resources/*.Z
 
@@ -74,5 +87,5 @@ RUN \
 
 # Copy build script, all fuzzers and supporting files
 COPY build.sh $SRC/
-COPY *.java $SRC/
-WORKDIR $SRC/
+COPY *.java *.options $SRC/
+WORKDIR $SRC/commons-compress
