@@ -21,11 +21,15 @@ FROM ghcr.io/aixcc-finals/base-builder:v1.3.0
 RUN apt-get update && apt-get install -y devscripts equivs \
 	build-essential git-core cmake ninja-build pkg-config ccache
 
-RUN git clone --depth 1 https://github.com/FreeRDP/FreeRDP.git
+#RUN git clone --depth 1 https://github.com/FreeRDP/FreeRDP.git
+
+WORKDIR $SRC
+COPY pkgs/FreeRDP.tar.gz $SRC/FreeRDP.tar.gz
+RUN tar -zxf $SRC/FreeRDP.tar.gz && rm $SRC/FreeRDP.tar.gz
 
 WORKDIR FreeRDP
 
 # Install all dependencies required by the nightly package.
 RUN mk-build-deps --install --tool 'apt-get --yes --no-remove --no-install-recommends' packaging/deb/freerdp-nightly/control
 
-COPY build.sh $SRC/
+COPY build.sh *.options $SRC/
