@@ -15,5 +15,10 @@
 #
 ################################################################################
 
+cp ${SRC}/*.options ${OUT}/
+
 # Run the OSS-Fuzz script in the curl-fuzzer project.
+pushd $SRC/curl_fuzzer
 ./ossfuzz.sh
+popd
+echo -e "\ntimeout_exitcode=0\n" >> ${OUT}/curl_fuzzer.options
