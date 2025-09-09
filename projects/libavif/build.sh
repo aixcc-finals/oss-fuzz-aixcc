@@ -15,6 +15,8 @@
 #
 ################################################################################
 
+cp ${SRC}/*.options ${OUT}/
+
 bash tests/oss-fuzz/build.sh
 
 # show contents of $OUT/ for sanity checking

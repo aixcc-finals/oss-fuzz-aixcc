@@ -19,7 +19,8 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y curl python3-pip python3-setuptools python3-wheel cmake git nasm && \
     pip3 install meson ninja
 
-RUN git clone --depth 1 https://github.com/AOMediaCodec/libavif.git libavif
-WORKDIR libavif
+#RUN git clone --depth 1 https://github.com/AOMediaCodec/libavif.git libavif
+ADD pkgs/libavif.tar.gz $SRC/
+WORKDIR $SRC/libavif
 
-COPY build.sh avif_decode_seed_corpus.zip $SRC/
+COPY build.sh avif_decode_seed_corpus.zip *.options $SRC/
