@@ -17,6 +17,8 @@
 cd $SRC/mongoose
 $CXX $CXXFLAGS $LIB_FUZZING_ENGINE -I. test/fuzz.c -o $OUT/fuzz
 
+cp ${SRC}/*.options ${OUT}/
+
 # Fuzzer using honggfuzz netdriver.
 if [[ "$FUZZING_ENGINE" == "honggfuzz" ]]
 then
@@ -26,3 +28,5 @@ then
    fuzz_netdriver_http.c mongoose.c -I. -o $OUT/fuzz_netdriver_http  \
    -pthread
 fi
+
+
